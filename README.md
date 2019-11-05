@@ -26,3 +26,9 @@
 
 5. Developing evironment
 - Visual Studio 2019
+
+6. Steps for running application
+- Install/update npm
+- Build angular application from the CLI
+- Run the application from visual studio 2019 (click 'Yes' when the message box shows up)
+

@@ -1,0 +1,17 @@
+﻿<div class="row">
+    <div class="col-md-9">
+        <h3>{{title}}</h3>
+        <div class="form-group has-search">
+            <span class="fa fa-search form-control-feedback"></span>
+            <input #searchBox type="text" class="form-control" placeholder="search by book title or author" (keyup.enter)="onEnter(searchBox.value)" />
+        </div>
+        <book-list>
+
+        </book-list>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-light p-2">
+            <the-cart></the-cart>
+        </div>
+    </div>
+</div>

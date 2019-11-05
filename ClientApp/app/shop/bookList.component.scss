@@ -1,0 +1,47 @@
+﻿.product-info img{
+    max-width: 150px;    
+    margin: 0 2px;
+    border: 1px solid black;
+}
+
+.product-info .caption {
+    font-size: large;
+    font-weight: bold;
+}
+
+.product-name {
+    font-size: small;
+    font-weight: bold;
+    margin:2px;
+}
+
+.product-info p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 200px;
+}
+
+
+.product-detail .product-img img {
+    height: 140px;
+    margin: 0 2px;
+  }
+
+.product-detail .group-info {
+    width: 200px;
+    height: auto;
+    margin: 2px 10px 10px 2px;
+    padding: 2px;
+    font-size: small;
+    font-weight: bold;
+    align-content: center;
+}
+
+.product-detail .product-description{
+    font-size:medium;
+}
+
+.delivery-service li {
+    border:none;
+}
