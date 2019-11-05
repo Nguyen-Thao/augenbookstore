@@ -4,11 +4,6 @@
     <ShowAllFiles>true</ShowAllFiles>
   </PropertyGroup>
   <ItemGroup>
-    <TypeScriptCompile Update="ClientApp\app\shared\dialogData.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Update="ClientApp\app\shared\deliveryService.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

@@ -15,7 +15,7 @@ export class DataService {
     public Books: Book[] = [];
     public Order: Order = new Order();
     public DeliveryServices: DeliveryService[];
-    public SelectedDeliveryServiceName: string = "";
+    public SelectedDeliveryServiceName: string = '';
     public SelectedDeliveryServiceCost: number = 0;
    
     loadBooks(searchKey): Observable<boolean> {        
@@ -53,14 +53,17 @@ export class DataService {
             item.productPublishedDate = newBook.publishedDate;
             item.productSmallThumbnail = newBook.smallThumbnail;
             item.productThumbnail = newBook.thumbnail;
-            item.quantity = 1;
-            if (this.SelectedDeliveryServiceName != "") {
-                item.deliveryServiceCost = this.SelectedDeliveryServiceCost;
-                //reset selected delivery service object
-                this.SelectedDeliveryServiceName = "";
-                this.SelectedDeliveryServiceCost = 0;
-            }
+            item.deliveryServiceCost = this.SelectedDeliveryServiceCost;
+            item.quantity = 1;            
             this.Order.items.push(item);
+        }
+        
+    }
+
+    public ResetSelecteDeliveryService() {
+        if (this.SelectedDeliveryServiceName != '') {
+            this.SelectedDeliveryServiceName = '';
+            this.SelectedDeliveryServiceCost = 0;
         }
     }
 

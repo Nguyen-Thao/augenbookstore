@@ -19,7 +19,6 @@
 - CSS framework: your choice, however it must be CSS preprocessor (SASS, SCSS…)
 - Application of a state management library would be a plus
 - Application of ES6 or Typescript would be a plus 
-- Show confirmation dialog after clicking buy button
 
 4. Problem
 - The application still has bugs however the bugs can bypass to continue running
@@ -28,7 +27,7 @@
 - Visual Studio 2019
 
 6. Steps for running application
-- Install/update npm
+- Install npm
 - Build angular application from the CLI
 - Run the application from visual studio 2019 (click 'Yes' when the message box shows up)
 

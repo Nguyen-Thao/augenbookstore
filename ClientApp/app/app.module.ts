@@ -9,13 +9,9 @@ import { Cart } from './shop/cart.component';
 import { Shop } from './shop/shop.component';
 import { DataService } from './shared/dataService';
 import { from } from 'rxjs';
-import { ConfirmDialog } from './dialog/confirmDialog.component'
-
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDialogModule, MatButtonModule } from '@angular/material';
-
-
+import { ToastrModule } from 'ngx-toastr';
 
 let routes = [
     { path: "", component: Shop }
@@ -27,12 +23,6 @@ let routes = [
         BookList,
         Cart,
         Shop
-        ,
-        ConfirmDialog
-    ],
-    entryComponents: [
-        ConfirmDialog
-       
     ],
   imports: [
       BrowserModule,
@@ -42,8 +32,7 @@ let routes = [
           enableTracing: true //for debugging of the routing
       }),
       NgbModule,
-      MatDialogModule,
-      MatButtonModule,
+      ToastrModule.forRoot(),
       BrowserAnimationsModule
   ],
     providers: [

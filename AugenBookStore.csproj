@@ -7,7 +7,6 @@
   <ItemGroup>
     <None Remove="ClientApp\app\shared\book.ts" />
     <None Remove="ClientApp\app\shared\DeliveryService.ts" />
-    <None Remove="ClientApp\app\shared\DialogData.ts" />
     <None Remove="ClientApp\app\shared\order.ts" />
     <None Remove="ClientApp\app\shop\booklist.component.ts" />
     <None Remove="ClientApp\app\shared\dataService.ts" />
@@ -33,7 +32,6 @@
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\shared\book.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\deliveryService.ts" />
-    <TypeScriptCompile Include="ClientApp\app\shared\dialogData.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\order.ts" />
     <TypeScriptCompile Include="ClientApp\app\shop\booklist.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\dataService.ts" />

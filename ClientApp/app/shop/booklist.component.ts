@@ -3,9 +3,8 @@ import { DataService } from "../shared/dataService"
 import { Book } from '../shared/book';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { DeliveryService } from '../shared/DeliveryService';
-import { MatDialog, MatDialogConfig } from '@angular/material';
-import { ConfirmDialog } from '../dialog/confirmDialog.component'
-import { dialogData } from '../shared/dialogData';
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2'
 
 @Component({
     selector: "book-list",
@@ -14,7 +13,8 @@ import { dialogData } from '../shared/dialogData';
 })
 
 export class BookList implements OnInit {
-    constructor(private data: DataService, private modalService: NgbModal, private dialog: MatDialog) {
+    constructor(private data: DataService, private modalService: NgbModal,
+                private toastService: ToastrService) {
         this.Books = data.Books;
         this.modal = modalService;
         this.matDialog = this.matDialog;
@@ -38,8 +38,32 @@ export class BookList implements OnInit {
     }
 
     addBook(book: Book) {
-        this.data.addToOrder(book);
-        this.modal.dismissAll();
+        if (this.data.SelectedDeliveryServiceName == '') {
+            this.toastService.warning("Please select delivery service.");
+        }
+        else {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Are you sure you want to select " + this.data.SelectedDeliveryServiceName + " ($" + this.data.SelectedDeliveryServiceCost + ") delivery service?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, select it!'
+            })
+                .then((willSelect) => {
+
+                    if (willSelect.value) {
+                        this.data.addToOrder(book);
+                        this.modal.dismissAll();
+                        this.data.ResetSelecteDeliveryService();                        
+                    } 
+
+                    console.log(willSelect)
+                });
+            
+            
+        }
     }
 
     open(content: any, book: Book) {
@@ -65,21 +89,5 @@ export class BookList implements OnInit {
         this.data.selectDeliveryService(selectedDeliveryService); 
     }
 
-    openModal() {
-        const dialogConfig = new MatDialogConfig();
-
-        dialogConfig.disableClose = true;
-        dialogConfig.autoFocus = true;
-        dialogConfig.data = {
-            id: 1,
-            title: 'Show dialog'
-        };
-
-        const dialogRef = this.dialog.open(ConfirmDialog, dialogConfig);
-
-        dialogRef.afterClosed().subscribe(result => {
-            alert("response: " + result)
-        });
-    }
 
 }

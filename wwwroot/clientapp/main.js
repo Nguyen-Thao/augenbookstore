@@ -73,11 +73,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shop_cart_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./shop/cart.component */ "./ClientApp/app/shop/cart.component.ts");
 /* harmony import */ var _shop_shop_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./shop/shop.component */ "./ClientApp/app/shop/shop.component.ts");
 /* harmony import */ var _shared_dataService__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./shared/dataService */ "./ClientApp/app/shared/dataService.ts");
-/* harmony import */ var _dialog_confirmDialog_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./dialog/confirmDialog.component */ "./ClientApp/app/dialog/confirmDialog.component.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
-/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
-
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
 
 
 
@@ -102,23 +100,18 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
             _shop_booklist_component__WEBPACK_IMPORTED_MODULE_6__["BookList"],
             _shop_cart_component__WEBPACK_IMPORTED_MODULE_7__["Cart"],
-            _shop_shop_component__WEBPACK_IMPORTED_MODULE_8__["Shop"],
-            _dialog_confirmDialog_component__WEBPACK_IMPORTED_MODULE_10__["ConfirmDialog"]
-        ],
-        entryComponents: [
-            _dialog_confirmDialog_component__WEBPACK_IMPORTED_MODULE_10__["ConfirmDialog"]
+            _shop_shop_component__WEBPACK_IMPORTED_MODULE_8__["Shop"]
         ],
         imports: [
             _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
             _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClientModule"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_11__["RouterModule"].forRoot(routes, {
+            _angular_router__WEBPACK_IMPORTED_MODULE_10__["RouterModule"].forRoot(routes, {
                 useHash: true,
                 enableTracing: true //for debugging of the routing
             }),
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatDialogModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_13__["MatButtonModule"],
-            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_12__["BrowserAnimationsModule"]
+            ngx_toastr__WEBPACK_IMPORTED_MODULE_12__["ToastrModule"].forRoot(),
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_11__["BrowserAnimationsModule"]
         ],
         providers: [
             _shared_dataService__WEBPACK_IMPORTED_MODULE_9__["DataService"]
@@ -126,44 +119,6 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
     })
 ], AppModule);
-
-
-
-/***/ }),
-
-/***/ "./ClientApp/app/dialog/confirmDialog.component.ts":
-/*!*********************************************************!*\
-  !*** ./ClientApp/app/dialog/confirmDialog.component.ts ***!
-  \*********************************************************/
-/*! exports provided: ConfirmDialog */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmDialog", function() { return ConfirmDialog; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
-
-
-
-let ConfirmDialog = class ConfirmDialog {
-    constructor(data) {
-        this.data = data;
-        this.modalTitle = data.title;
-        console.log(data);
-    }
-};
-ConfirmDialog.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"], args: [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"],] }] }
-];
-ConfirmDialog = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'confirmDialog',
-        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./confirmDialog.component.html */ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/dialog/confirmDialog.component.html")).default,
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](0, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"]))
-], ConfirmDialog);
 
 
 
@@ -194,7 +149,7 @@ let DataService = class DataService {
         this.http = http;
         this.Books = [];
         this.Order = new _order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
-        this.SelectedDeliveryServiceName = "";
+        this.SelectedDeliveryServiceName = '';
         this.SelectedDeliveryServiceCost = 0;
     }
     loadBooks(searchKey) {
@@ -226,14 +181,15 @@ let DataService = class DataService {
             item.productPublishedDate = newBook.publishedDate;
             item.productSmallThumbnail = newBook.smallThumbnail;
             item.productThumbnail = newBook.thumbnail;
+            item.deliveryServiceCost = this.SelectedDeliveryServiceCost;
             item.quantity = 1;
-            if (this.SelectedDeliveryServiceName != "") {
-                item.deliveryServiceCost = this.SelectedDeliveryServiceCost;
-                //reset selected delivery service object
-                this.SelectedDeliveryServiceName = "";
-                this.SelectedDeliveryServiceCost = 0;
-            }
             this.Order.items.push(item);
+        }
+    }
+    ResetSelecteDeliveryService() {
+        if (this.SelectedDeliveryServiceName != '') {
+            this.SelectedDeliveryServiceName = '';
+            this.SelectedDeliveryServiceCost = 0;
         }
     }
     selectDeliveryService(deliveryService) {
@@ -292,7 +248,7 @@ class OrderItems {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".product-info img {\n  max-width: 150px;\n  margin: 0 2px;\n  border: 1px solid black;\n}\n\n.product-info .caption {\n  font-size: large;\n  font-weight: bold;\n}\n\n.product-name {\n  font-size: small;\n  font-weight: bold;\n  margin: 2px;\n}\n\n.product-info p {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  width: 200px;\n}\n\n.product-detail .product-img img {\n  height: 140px;\n  margin: 0 2px;\n}\n\n.product-detail .group-info {\n  width: 200px;\n  height: auto;\n  margin: 2px 10px 10px 2px;\n  padding: 2px;\n  font-size: small;\n  font-weight: bold;\n  align-content: center;\n}\n\n.product-detail .product-description {\n  font-size: medium;\n}\n\n.delivery-service li {\n  border: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9hcHAvc2hvcC9EOlxcVGhhb1xcVGVzdGluZ1xcQXVnZW5Cb29rU3RvcmUvQ2xpZW50QXBwXFxhcHBcXHNob3BcXGJvb2tMaXN0LmNvbXBvbmVudC5zY3NzIiwiQ2xpZW50QXBwL2FwcC9zaG9wL2Jvb2tMaXN0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7QUNDSjs7QURFQTtFQUNJLGdCQUFBO0VBQ0EsaUJBQUE7QUNDSjs7QURFQTtFQUNJLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0FDQ0o7O0FERUE7RUFDSSxnQkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0FDQ0o7O0FER0E7RUFDSSxhQUFBO0VBQ0EsYUFBQTtBQ0FKOztBREdBO0VBQ0ksWUFBQTtFQUNBLFlBQUE7RUFDQSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EscUJBQUE7QUNBSjs7QURHQTtFQUNJLGlCQUFBO0FDQUo7O0FER0E7RUFDSSxZQUFBO0FDQUoiLCJmaWxlIjoiQ2xpZW50QXBwL2FwcC9zaG9wL2Jvb2tMaXN0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByb2R1Y3QtaW5mbyBpbWd7XHJcbiAgICBtYXgtd2lkdGg6IDE1MHB4OyAgICBcclxuICAgIG1hcmdpbjogMCAycHg7XHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxufVxyXG5cclxuLnByb2R1Y3QtaW5mbyAuY2FwdGlvbiB7XHJcbiAgICBmb250LXNpemU6IGxhcmdlO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuXHJcbi5wcm9kdWN0LW5hbWUge1xyXG4gICAgZm9udC1zaXplOiBzbWFsbDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgbWFyZ2luOjJweDtcclxufVxyXG5cclxuLnByb2R1Y3QtaW5mbyBwIHtcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcclxuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XHJcbiAgICB3aWR0aDogMjAwcHg7XHJcbn1cclxuXHJcblxyXG4ucHJvZHVjdC1kZXRhaWwgLnByb2R1Y3QtaW1nIGltZyB7XHJcbiAgICBoZWlnaHQ6IDE0MHB4O1xyXG4gICAgbWFyZ2luOiAwIDJweDtcclxuICB9XHJcblxyXG4ucHJvZHVjdC1kZXRhaWwgLmdyb3VwLWluZm8ge1xyXG4gICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgaGVpZ2h0OiBhdXRvO1xyXG4gICAgbWFyZ2luOiAycHggMTBweCAxMHB4IDJweDtcclxuICAgIHBhZGRpbmc6IDJweDtcclxuICAgIGZvbnQtc2l6ZTogc21hbGw7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLnByb2R1Y3QtZGV0YWlsIC5wcm9kdWN0LWRlc2NyaXB0aW9ue1xyXG4gICAgZm9udC1zaXplOm1lZGl1bTtcclxufVxyXG5cclxuLmRlbGl2ZXJ5LXNlcnZpY2UgbGkge1xyXG4gICAgYm9yZGVyOm5vbmU7XHJcbn0iLCIucHJvZHVjdC1pbmZvIGltZyB7XG4gIG1heC13aWR0aDogMTUwcHg7XG4gIG1hcmdpbjogMCAycHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xufVxuXG4ucHJvZHVjdC1pbmZvIC5jYXB0aW9uIHtcbiAgZm9udC1zaXplOiBsYXJnZTtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG5cbi5wcm9kdWN0LW5hbWUge1xuICBmb250LXNpemU6IHNtYWxsO1xuICBmb250LXdlaWdodDogYm9sZDtcbiAgbWFyZ2luOiAycHg7XG59XG5cbi5wcm9kdWN0LWluZm8gcCB7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICB3aWR0aDogMjAwcHg7XG59XG5cbi5wcm9kdWN0LWRldGFpbCAucHJvZHVjdC1pbWcgaW1nIHtcbiAgaGVpZ2h0OiAxNDBweDtcbiAgbWFyZ2luOiAwIDJweDtcbn1cblxuLnByb2R1Y3QtZGV0YWlsIC5ncm91cC1pbmZvIHtcbiAgd2lkdGg6IDIwMHB4O1xuICBoZWlnaHQ6IGF1dG87XG4gIG1hcmdpbjogMnB4IDEwcHggMTBweCAycHg7XG4gIHBhZGRpbmc6IDJweDtcbiAgZm9udC1zaXplOiBzbWFsbDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLnByb2R1Y3QtZGV0YWlsIC5wcm9kdWN0LWRlc2NyaXB0aW9uIHtcbiAgZm9udC1zaXplOiBtZWRpdW07XG59XG5cbi5kZWxpdmVyeS1zZXJ2aWNlIGxpIHtcbiAgYm9yZGVyOiBub25lO1xufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = (".product-info img {\n  max-width: 150px;\n  margin: 0 2px;\n  border: 1px solid black;\n}\n\n.product-info .caption {\n  font-size: large;\n  font-weight: bold;\n}\n\n.product-name {\n  font-size: small;\n  font-weight: bold;\n  margin: 2px;\n}\n\n.product-info p {\n  overflow: hidden;\n  text-overflow: ellipsis;\n  white-space: nowrap;\n  width: 200px;\n}\n\n.product-detail .product-img img {\n  height: 140px;\n  margin: 0 2px;\n}\n\n.product-detail .group-info {\n  width: 200px;\n  height: auto;\n  margin: 2px 10px 10px 2px;\n  padding: 2px;\n  font-size: small;\n  font-weight: bold;\n  align-content: center;\n}\n\n.product-detail .product-description {\n  font-size: medium;\n}\n\n.delivery-service li {\n  border: none;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNsaWVudEFwcC9hcHAvc2hvcC9EOlxcVGhhb1xcR0lUSFVCXFxjaGVja1xcYXVnZW5ib29rc3RvcmUvQ2xpZW50QXBwXFxhcHBcXHNob3BcXGJvb2tMaXN0LmNvbXBvbmVudC5zY3NzIiwiQ2xpZW50QXBwL2FwcC9zaG9wL2Jvb2tMaXN0LmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0ksZ0JBQUE7RUFDQSxhQUFBO0VBQ0EsdUJBQUE7QUNDSjs7QURFQTtFQUNJLGdCQUFBO0VBQ0EsaUJBQUE7QUNDSjs7QURFQTtFQUNJLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxXQUFBO0FDQ0o7O0FERUE7RUFDSSxnQkFBQTtFQUNBLHVCQUFBO0VBQ0EsbUJBQUE7RUFDQSxZQUFBO0FDQ0o7O0FER0E7RUFDSSxhQUFBO0VBQ0EsYUFBQTtBQ0FKOztBREdBO0VBQ0ksWUFBQTtFQUNBLFlBQUE7RUFDQSx5QkFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLGlCQUFBO0VBQ0EscUJBQUE7QUNBSjs7QURHQTtFQUNJLGlCQUFBO0FDQUo7O0FER0E7RUFDSSxZQUFBO0FDQUoiLCJmaWxlIjoiQ2xpZW50QXBwL2FwcC9zaG9wL2Jvb2tMaXN0LmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnByb2R1Y3QtaW5mbyBpbWd7XHJcbiAgICBtYXgtd2lkdGg6IDE1MHB4OyAgICBcclxuICAgIG1hcmdpbjogMCAycHg7XHJcbiAgICBib3JkZXI6IDFweCBzb2xpZCBibGFjaztcclxufVxyXG5cclxuLnByb2R1Y3QtaW5mbyAuY2FwdGlvbiB7XHJcbiAgICBmb250LXNpemU6IGxhcmdlO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuXHJcbi5wcm9kdWN0LW5hbWUge1xyXG4gICAgZm9udC1zaXplOiBzbWFsbDtcclxuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xyXG4gICAgbWFyZ2luOjJweDtcclxufVxyXG5cclxuLnByb2R1Y3QtaW5mbyBwIHtcclxuICAgIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgICB0ZXh0LW92ZXJmbG93OiBlbGxpcHNpcztcclxuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XHJcbiAgICB3aWR0aDogMjAwcHg7XHJcbn1cclxuXHJcblxyXG4ucHJvZHVjdC1kZXRhaWwgLnByb2R1Y3QtaW1nIGltZyB7XHJcbiAgICBoZWlnaHQ6IDE0MHB4O1xyXG4gICAgbWFyZ2luOiAwIDJweDtcclxuICB9XHJcblxyXG4ucHJvZHVjdC1kZXRhaWwgLmdyb3VwLWluZm8ge1xyXG4gICAgd2lkdGg6IDIwMHB4O1xyXG4gICAgaGVpZ2h0OiBhdXRvO1xyXG4gICAgbWFyZ2luOiAycHggMTBweCAxMHB4IDJweDtcclxuICAgIHBhZGRpbmc6IDJweDtcclxuICAgIGZvbnQtc2l6ZTogc21hbGw7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLnByb2R1Y3QtZGV0YWlsIC5wcm9kdWN0LWRlc2NyaXB0aW9ue1xyXG4gICAgZm9udC1zaXplOm1lZGl1bTtcclxufVxyXG5cclxuLmRlbGl2ZXJ5LXNlcnZpY2UgbGkge1xyXG4gICAgYm9yZGVyOm5vbmU7XHJcbn0iLCIucHJvZHVjdC1pbmZvIGltZyB7XG4gIG1heC13aWR0aDogMTUwcHg7XG4gIG1hcmdpbjogMCAycHg7XG4gIGJvcmRlcjogMXB4IHNvbGlkIGJsYWNrO1xufVxuXG4ucHJvZHVjdC1pbmZvIC5jYXB0aW9uIHtcbiAgZm9udC1zaXplOiBsYXJnZTtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG59XG5cbi5wcm9kdWN0LW5hbWUge1xuICBmb250LXNpemU6IHNtYWxsO1xuICBmb250LXdlaWdodDogYm9sZDtcbiAgbWFyZ2luOiAycHg7XG59XG5cbi5wcm9kdWN0LWluZm8gcCB7XG4gIG92ZXJmbG93OiBoaWRkZW47XG4gIHRleHQtb3ZlcmZsb3c6IGVsbGlwc2lzO1xuICB3aGl0ZS1zcGFjZTogbm93cmFwO1xuICB3aWR0aDogMjAwcHg7XG59XG5cbi5wcm9kdWN0LWRldGFpbCAucHJvZHVjdC1pbWcgaW1nIHtcbiAgaGVpZ2h0OiAxNDBweDtcbiAgbWFyZ2luOiAwIDJweDtcbn1cblxuLnByb2R1Y3QtZGV0YWlsIC5ncm91cC1pbmZvIHtcbiAgd2lkdGg6IDIwMHB4O1xuICBoZWlnaHQ6IGF1dG87XG4gIG1hcmdpbjogMnB4IDEwcHggMTBweCAycHg7XG4gIHBhZGRpbmc6IDJweDtcbiAgZm9udC1zaXplOiBzbWFsbDtcbiAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLnByb2R1Y3QtZGV0YWlsIC5wcm9kdWN0LWRlc2NyaXB0aW9uIHtcbiAgZm9udC1zaXplOiBtZWRpdW07XG59XG5cbi5kZWxpdmVyeS1zZXJ2aWNlIGxpIHtcbiAgYm9yZGVyOiBub25lO1xufSJdfQ== */");
 
 /***/ }),
 
@@ -310,19 +266,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _shared_dataService__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../shared/dataService */ "./ClientApp/app/shared/dataService.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm2015/ng-bootstrap.js");
-/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
-/* harmony import */ var _dialog_confirmDialog_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../dialog/confirmDialog.component */ "./ClientApp/app/dialog/confirmDialog.component.ts");
+/* harmony import */ var ngx_toastr__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ngx-toastr */ "./node_modules/ngx-toastr/fesm2015/ngx-toastr.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
 
+//import * as _swal from 'sweetalert';
 
+//import { SweetAlert } from 'sweetalert/typings/core';
+//const swal: SweetAlert = _swal as any;
 let BookList = class BookList {
-    constructor(data, modalService, dialog) {
+    constructor(data, modalService, toastService) {
         this.data = data;
         this.modalService = modalService;
-        this.dialog = dialog;
+        this.toastService = toastService;
         this.Books = [];
         this.Books = data.Books;
         this.modal = modalService;
@@ -337,8 +297,30 @@ let BookList = class BookList {
         });
     }
     addBook(book) {
-        this.data.addToOrder(book);
-        this.modal.dismissAll();
+        if (this.data.SelectedDeliveryServiceName == '') {
+            this.toastService.warning("Please select delivery service.");
+        }
+        else {
+            //this.toastService.success(this.data.SelectedDeliveryServiceName + "(" + this.data.SelectedDeliveryServiceCost + ") is selected"); 
+            sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.fire({
+                title: "Are you sure?",
+                text: "Are you sure you want to select " + this.data.SelectedDeliveryServiceName + " ($" + this.data.SelectedDeliveryServiceCost + ") delivery service?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, select it!'
+            })
+                .then((willSelect) => {
+                if (willSelect.value) {
+                    //this.toastService.success(this.data.SelectedDeliveryServiceName + "(" + this.data.SelectedDeliveryServiceCost + ") is selected"); 
+                    this.data.addToOrder(book);
+                    this.modal.dismissAll();
+                    this.data.ResetSelecteDeliveryService();
+                }
+                console.log(willSelect);
+            });
+        }
     }
     open(content, book) {
         this.SelectedBook = book;
@@ -360,35 +342,14 @@ let BookList = class BookList {
         }
     }
     setDeliveryServiceCost(selectedDeliveryService) {
+        //this.toastService.success(selectedDeliveryService.deliveryServiceName);
         this.data.selectDeliveryService(selectedDeliveryService);
-    }
-    //openDialog(): void {
-    //    const dialogRef = this.matDialog.open(ConfirmDialog, {
-    //        width: '250px',
-    //        data: { name: "sdad", animal: "asdasd"}
-    //    });
-    //    dialogRef.afterClosed().subscribe(result => {
-    //        console.log('The dialog was closed');
-    //        //this.animal = result;
-    //    });
-    openModal() {
-        const dialogConfig = new _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogConfig"]();
-        dialogConfig.disableClose = true;
-        dialogConfig.autoFocus = true;
-        dialogConfig.data = {
-            id: 1,
-            title: 'Show dialog'
-        };
-        const dialogRef = this.dialog.open(_dialog_confirmDialog_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmDialog"], dialogConfig);
-        dialogRef.afterClosed().subscribe(result => {
-            alert("response: " + result);
-        });
     }
 };
 BookList.ctorParameters = () => [
     { type: _shared_dataService__WEBPACK_IMPORTED_MODULE_2__["DataService"] },
     { type: _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbModal"] },
-    { type: _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialog"] }
+    { type: ngx_toastr__WEBPACK_IMPORTED_MODULE_4__["ToastrService"] }
 ];
 BookList = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -562,19 +523,6 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ("<router-outlet>\r\n\r\n</router-outlet>");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/dialog/confirmDialog.component.html":
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./ClientApp/app/dialog/confirmDialog.component.html ***!
-  \*************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<h2 mat-dialog-title>{{modalTitle}}</h2>\r\n<mat-dialog-content>Do you wish to continue previous shopping?</mat-dialog-content>\r\n<mat-dialog-actions>\r\n    <button mat-button mat-dialog-close>No</button>\r\n    <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->\r\n    <button mat-button [mat-dialog-close]=\"true\">Yes</button>\r\n</mat-dialog-actions>\r\n");
 
 /***/ }),
 
@@ -853,7 +801,7 @@ function __importDefault(mod) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Thao\Testing\AugenBookStore\ClientApp\main.ts */"./ClientApp/main.ts");
+module.exports = __webpack_require__(/*! D:\Thao\GITHUB\check\augenbookstore\ClientApp\main.ts */"./ClientApp/main.ts");
 
 
 /***/ })

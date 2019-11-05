@@ -6370,8 +6370,8 @@ Zone.__load_patch('PromiseRejectionEvent', (global, Zone) => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Thao\Testing\AugenBookStore\ClientApp\polyfills.ts */"./ClientApp/polyfills.ts");
-module.exports = __webpack_require__(/*! D:\Thao\Testing\AugenBookStore\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
+__webpack_require__(/*! D:\Thao\GITHUB\check\augenbookstore\ClientApp\polyfills.ts */"./ClientApp/polyfills.ts");
+module.exports = __webpack_require__(/*! D:\Thao\GITHUB\check\augenbookstore\node_modules\@angular-devkit\build-angular\src\angular-cli-files\models\jit-polyfills.js */"./node_modules/@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills.js");
 
 
 /***/ })
